@@ -108,9 +108,6 @@
                     @else
                         <a href="{{ route('login') }}">{{ucfirst(trans('app.login'))}}</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">{{ucfirst(trans('app.register'))}}</a>
-                        @endif
                     @endauth
                 </div>
             @endif

@@ -21,5 +21,17 @@ return [
     'created_at' => 'creado',
     'save' => 'guardar',
     'actions' => 'acciones',
-    
+    'name' => 'nombre',
+    'email' => 'email',    
+
+
+    'repetir_password' => 'repetir contraseña',
+    'nuevo_password' => 'contraseña nueva',
+    'cambiar_password' => 'cambiar contraseña',
+    'password' => 'contraseña',
+    'edit_user' => 'Editar usuario',
+    'users' => 'usuarios',
+
+
+
 ];

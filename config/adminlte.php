@@ -131,7 +131,13 @@ return [
             'text'        => 'Feeds',
             'url'         => 'admin/feed',
             'icon'        => 'far fa-file',
-            // 'label'       => 'Feeds',
+            'label_color' => 'success',
+        ],
+
+        [
+            'text'        => 'Usuarios',
+            'url'         => 'admin/users',
+            'icon'        => 'far fa-file',
             'label_color' => 'success',
         ],
  

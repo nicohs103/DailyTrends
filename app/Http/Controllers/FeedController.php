@@ -106,7 +106,7 @@ class FeedController extends Controller
 
         if (empty($feed)) {
             Flash::error(trans('app.not_found'));
-            return redirect(url('admin/feed/index'));
+            return redirect(url('admin/feed'));
         }
 
         $media = $feed->getMedia('imagen')->first();
@@ -129,7 +129,7 @@ class FeedController extends Controller
 
         if (empty($feed)) {
             Flash::error(trans('app.not_found'));
-            return redirect(url('admin/feed/index'));
+            return redirect(url('admin/feed'));
         }
 
         $media = $feed->getMedia('imagen')->first();
@@ -160,7 +160,7 @@ class FeedController extends Controller
         $feed = Feed::find($id);
         if (empty($feed)) {
             Flash::error(trans('app.not_found'));
-            return redirect(url('admin/feed/index'));
+            return redirect(url('admin/feed'));
         }
 
         $feed->title = ucfirst($request->title);
@@ -175,7 +175,7 @@ class FeedController extends Controller
         }
 
         Flash::success(trans('app.updated_successfully'));
-        return view('admin.feed.show', compact('feed'));
+        return redirect(url('admin/feed'));
     }
 
     /**
@@ -190,12 +190,12 @@ class FeedController extends Controller
 
         if (empty($feed)) {
             Flash::error(trans('app.not_found'));
-            return redirect(url('admin/feed/index'));
+            return redirect(url('admin/feed'));
         }
 
         $feed->delete();
         Flash::success(trans('app.deleted_successfully'));
-        return redirect(url('admin/feed/index'));
+        return redirect(url('admin/feed'));
     }
 
     public function ajaxDestroyMedia(Request $request)
