@@ -18,5 +18,8 @@ return [
     'home' => 'inicio',
     'login' => 'ingresar',
     'register' => 'registrarse',
+    'created_at' => 'creado',
+    'save' => 'guardar',
+    'actions' => 'acciones',
     
 ];

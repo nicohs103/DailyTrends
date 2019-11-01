@@ -17,7 +17,6 @@ class CreateFeed extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('body');
-            $table->string('image')->nullable();
             $table->string('source');
             $table->string('publisher');
             $table->timestamps();

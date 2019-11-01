@@ -30,8 +30,23 @@ class FeedController extends Controller
             return $string . '...';
         });
 
+        $dataTable->editColumn('created_at', function ($feed) {
+            if($feed->created_at){
+                return $feed->created_at->format('d-m-Y H:m:s');
+            }
+            return '';
+        });
+
+        $dataTable->addColumn('image', function($feed){
+            $html = 'Sin imagen';
+            if($feed->getMedia('imagen')->first()){
+                $html = '<a target="_blank" href="'.$feed->getMedia('imagen')->first()->getFullUrl().'">'.$feed->getMedia('imagen')->first()->name.'</a>';
+            }
+            return $html;
+        });
+
         $dataTable->addColumn('actions', 'admin.feed.datatables_actions');
-        $dataTable->rawColumns(['actions']);
+        $dataTable->rawColumns(['actions','image']);
 
         $columns = ['title', 'body', 'image', 'source', 'publisher'];
         $base = new DataTableBase($feed, $dataTable, $columns);
@@ -134,20 +149,32 @@ class FeedController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $feed = Feed::find($id);
+        
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required',
+            'source' => 'required',
+            'publisher' => 'required',
+        ]);
 
+        $feed = Feed::find($id);
         if (empty($feed)) {
             Flash::error(trans('app.not_found'));
             return redirect(url('admin/feed/index'));
         }
 
+        $feed->title = ucfirst($request->title);
+        $feed->body = $request->body;
+        $feed->source = $request->source;
+        $feed->publisher = ucfirst($request->publisher);
+        $feed->save();
+        
         if (isset($request->imagen)) {
             $feed->clearMediaCollection('imagen');
             $feed->addMediaFromRequest('imagen')->toMediaCollection('imagen');
         }
 
         Flash::success(trans('app.updated_successfully'));
-
         return view('admin.feed.show', compact('feed'));
     }
 

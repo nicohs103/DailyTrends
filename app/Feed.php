@@ -29,7 +29,6 @@ class Feed extends Model implements HasMedia
     public $fillable = [
         'title',
         'body',
-        'image',
         'source',
         'publisher',
     ];
@@ -37,7 +36,6 @@ class Feed extends Model implements HasMedia
     protected $casts = [
         'title' => 'string',
         'body' => 'string',
-        'image' => 'string',
         'source' => 'string',
         'publisher' => 'string',
     ];

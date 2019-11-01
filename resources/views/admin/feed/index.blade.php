@@ -1,4 +1,12 @@
 @extends('adminlte::page')
+@section('css')
+<style>
+.button_new{
+    font-size: 25px;
+}
+</style>
+
+@stop
 
 @section('title', 'Feed')
 
@@ -6,8 +14,8 @@
     <h1>Feeds</h1>
 
     <div class="page-title-actions" style="float:right">
-        <a href="{{url('admin/feed/create')}}"  class='btn btn-grey'><i class="fa fa-fw fa-plus-square"></i>
-            {{ucwords(trans('app.new'))}}</a>
+        <a href="{{url('admin/feed/create')}}"  class='btn btn-grey button_new'><i class="fa fa-fw fa-plus-square"></i>
+            {{strtoupper(trans('app.new'))}}</a>
     </div>
 @stop
 
@@ -23,7 +31,8 @@
                     <th>{{ ucwords(trans('app.image')) }}</th>
                     <th>{{ ucwords(trans('app.source')) }}</th>
                     <th>{{ ucwords(trans('app.publisher')) }}</th>
-                    <th class="columna_acciones"></th>
+                    <th>{{ ucwords(trans('app.created_at')) }}</th>
+                    <th class="columna_acciones">{{ ucwords(trans('app.actions')) }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -65,9 +74,10 @@
                 {data: 'image', name: 'image'},
                 {data: 'source', name: 'source'},
                 {data: 'publisher', name: 'publisher'},
+                {data: 'created_at', name: 'created_at'},
                 {data: 'actions', name: 'actions', sortable: false, class: 'text-right' }, 
             ],
-            order: [1],
+            order: [5, 'DESC'],
             language: {"url": "http://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"},
 
 

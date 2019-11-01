@@ -22,26 +22,26 @@
     <div class="col-md-8">
         <div class="position-relative form-group">
             {!! Form::label('title', ucwords(trans('app.title')).':') !!}
-            {!! Form::text('title', isset($feed) ? $feed->title : null, ['class' => 'form-control']) !!}
+            {!! Form::text('title', isset($feed) ? $feed->title : null, ['class' => 'form-control', 'required']) !!}
         </div>
     </div>
     
     <div class="col-md-8">
         <div class="position-relative form-group">
             {!! Form::label('body', ucwords(trans('app.body')).':') !!}
-            {!! Form::textarea('body', isset($feed) ? $feed->body : null, ['class' => 'form-control', 'rows' => 30, 'id' => 'body']) !!}
+            {!! Form::textarea('body', isset($feed) ? $feed->body : null, ['class' => 'form-control', 'rows' => 30, 'id' => 'body', 'required']) !!}
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
             {!! Form::label('source', ucwords(trans('app.source')).':') !!}
-            {!! Form::text('source', isset($feed) ? $feed->source : null, ['class' => 'form-control']) !!}
+            {!! Form::text('source', isset($feed) ? $feed->source : null, ['class' => 'form-control', 'required']) !!}
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
             {!! Form::label('publisher', ucwords(trans('app.publisher')).':') !!}
-            {!! Form::text('publisher', isset($feed) ? $feed->publisher : null, ['class' => 'form-control']) !!}
+            {!! Form::text('publisher', isset($feed) ? $feed->publisher : null, ['class' => 'form-control', 'required']) !!}
         </div>
     </div>
 
