@@ -15,4 +15,8 @@ return [
     'deleted_successfully' => 'Eliminado correctamente',
     'saved_successfully' => 'Guardado correctamente',
     'created_successfully' => 'Creado correctamente',
+    'home' => 'inicio',
+    'login' => 'ingresar',
+    'register' => 'registrarse',
+    
 ];

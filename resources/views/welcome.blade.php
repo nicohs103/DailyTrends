@@ -25,7 +25,7 @@
             }
 
             .flex-center {
-                align-items: center;
+                /* align-items: center; */
                 display: flex;
                 justify-content: center;
             }
@@ -59,8 +59,36 @@
             }
 
             .m-b-md {
-                margin-bottom: 30px;
+                margin-bottom: 50px; margin-top: 50px;
             }
+            
+            .feeds{
+                max-width: 500px;
+            }
+
+
+            .feed_title{
+                font-size: 20px;
+                text-align: center;
+                margin-top: 20px;
+            }
+            
+            .feed_body{
+                color: black;
+                font-size: 16px;
+                text-align: left;
+            }
+
+            .feed_publisher{
+                color: black;
+                font-size: 13px;
+                text-align: right;
+            }
+
+            a:link{
+                text-decoration:none;
+            }
+
         </style>
     </head>
     <body>
@@ -68,12 +96,12 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">{{ucfirst(trans('app.home'))}}</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">{{ucfirst(trans('app.login'))}}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">{{ucfirst(trans('app.register'))}}</a>
                         @endif
                     @endauth
                 </div>
@@ -81,18 +109,29 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    {{ucfirst(env('APP_NAME'))}}
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="clearfix"></div>
+
+                <div class="feeds">
+                   @foreach($feeds as $feed)
+                   <div class="container">
+
+                       <div class="row feed_title">
+                          <a href="{{$feed->source}}">{{$feed->title}}</a>
+                       </div>
+
+                       <div class="row feed_body">
+                       {!!$feed->body!!}
+                    </div>
+                    <div class="row feed_publisher">
+                       {{$feed->publisher}}
+                    </div>
+                    </div>
+
+
+                   @endforeach
                 </div>
             </div>
         </div>
