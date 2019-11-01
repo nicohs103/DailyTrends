@@ -20,7 +20,8 @@ class FeedController extends Controller
         return view('admin.feed.index');
     }
 
-    public function getFeedsDatatable (Request $request){
+    public function getFeedsDatatable(Request $request)
+    {
         $feed = Feed::all();
         $dataTable = DataTables::of($feed);
         $dataTable->editColumn('body', function ($feed) {
@@ -35,7 +36,6 @@ class FeedController extends Controller
         $columns = ['title', 'body', 'image', 'source', 'publisher'];
         $base = new DataTableBase($feed, $dataTable, $columns);
         return $base->render(null);
-
     }
 
     /**
@@ -87,20 +87,19 @@ class FeedController extends Controller
      */
     public function show($id)
     {
-        // $feed = Feed::find($id);
+        $feed = Feed::find($id);
 
-        // if(empty($feed)){
-        //     Flash::error(trans('app.not_found'));
-        //     return redirect(url('admin/feed'));
-        // }
+        if (empty($feed)) {
+            Flash::error(trans('app.not_found'));
+            return redirect(url('admin/feed/index'));
+        }
 
-        // $media = $feed->getMedia('imagen')->first();
-        // if (isset($media)) {
-        //     $imagen = $media->getFullUrl();
-        // }
+        $media = $feed->getMedia('imagen')->first();
+        if (isset($media)) {
+            $imagen = $media->getFullUrl();
+        }
 
-        // return view('admin.feed.show', compact('feed','imagen'));
-
+        return view('admin.feed.show', compact('feed', 'imagen'));
     }
 
     /**
@@ -113,7 +112,7 @@ class FeedController extends Controller
     {
         $feed = Feed::find($id);
 
-        if(empty($feed)){
+        if (empty($feed)) {
             Flash::error(trans('app.not_found'));
             return redirect(url('admin/feed/index'));
         }
@@ -122,9 +121,8 @@ class FeedController extends Controller
         if (isset($media)) {
             $imagen = $media->getFullUrl();
         }
-        dd($media, $media->getUrl(), $media->getFullUrl());
 
-        return view('admin.feed.show', compact('feed','imagen'));
+        return view('admin.feed.show', compact('feed', 'imagen'));
     }
 
     /**
@@ -138,7 +136,7 @@ class FeedController extends Controller
     {
         $feed = Feed::find($id);
 
-        if(empty($feed)){
+        if (empty($feed)) {
             Flash::error(trans('app.not_found'));
             return redirect(url('admin/feed/index'));
         }
@@ -163,7 +161,7 @@ class FeedController extends Controller
     {
         $feed = Feed::find($id);
 
-        if(empty($feed)){
+        if (empty($feed)) {
             Flash::error(trans('app.not_found'));
             return redirect(url('admin/feed/index'));
         }
@@ -190,6 +188,5 @@ class FeedController extends Controller
         }
 
         \Session::put('info', trans('app.content_removed'));
-
     }
 }
