@@ -17,6 +17,7 @@
         "laravelcollective/html": "^6.0",
         "laraveles/spanish": "^1.4",
         "spatie/laravel-medialibrary": "^7.14",
+        "willvincent/feeds": "^2.0",
         "yajra/laravel-datatables": "^1.5",
         "yajra/laravel-datatables-oracle": "^9.7"
     },
