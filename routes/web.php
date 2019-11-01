@@ -20,3 +20,7 @@ Auth::routes();
 Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
+
+Route::get('admin/feed/ajaxDestroyMedia', 'FeedController@ajaxDestroyMedia')->name('admin.feed.ajaxDestroyMedia');
+Route::get('admin/feed/getFeedsDatatable', 'FeedController@getFeedsDatatable')->name('admin.feed.getFeedsDatatable');
+Route::resource('admin/feed', 'FeedController');

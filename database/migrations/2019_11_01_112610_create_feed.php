@@ -13,11 +13,11 @@ class CreateFeed extends Migration
      */
     public function up()
     {
-        Schema::create('feed', function (Blueprint $table) {
+        Schema::create('feeds', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('body');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('source');
             $table->string('publisher');
             $table->timestamps();
@@ -31,6 +31,6 @@ class CreateFeed extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('feed');
+        Schema::dropIfExists('feeds');
     }
 }
