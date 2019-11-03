@@ -27,13 +27,14 @@
         <table id="data-feed" class="table table-hover table-striped table-bordered responsive">
             <thead>
                 <tr>
-                    <th>{{ ucwords(trans('app.title')) }}</th>
-                    <th>{{ ucwords(trans('app.body')) }}</th>
-                    <th>{{ ucwords(trans('app.image')) }}</th>
-                    <th>{{ ucwords(trans('app.source')) }}</th>
-                    <th>{{ ucwords(trans('app.publisher')) }}</th>
-                    <th>{{ ucwords(trans('app.created_at')) }}</th>
-                    <th class="columna_acciones">{{ ucwords(trans('app.actions')) }}</th>
+                    <th>{{ ucfirst(trans('app.title')) }}</th>
+                    <th>{{ ucfirst(trans('app.body')) }}</th>
+                    <th>{{ ucfirst(trans('app.image')) }}</th>
+                    <th>{{ ucfirst(trans('app.source')) }}</th>
+                    <th>{{ ucfirst(trans('app.publisher')) }}</th>
+                    <th>{{ ucfirst(trans('app.created_at')) }}</th>
+                    <th>{{ ucfirst(trans('app.last_editor')) }}</th>                    
+                    <th class="columna_acciones">{{ ucfirst(trans('app.actions')) }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -76,6 +77,7 @@
                 {data: 'source', name: 'source'},
                 {data: 'publisher', name: 'publisher'},
                 {data: 'created_at', name: 'created_at'},
+                {data: 'last_editor_id', name: 'last_editor_id'},
                 {data: 'actions', name: 'actions', sortable: false, class: 'text-right' }, 
             ],
             order: [5, 'DESC'],

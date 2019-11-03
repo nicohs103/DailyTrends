@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use App\User;
 
 class Feed extends Model implements HasMedia
 {
@@ -31,6 +32,7 @@ class Feed extends Model implements HasMedia
         'body',
         'source',
         'publisher',
+        'last_editor_id',
     ];
 
     protected $casts = [
@@ -38,6 +40,11 @@ class Feed extends Model implements HasMedia
         'body' => 'string',
         'source' => 'string',
         'publisher' => 'string',
+        'last_editor_id' => 'integer',
     ];
+
+    public function lastEditor(){
+        return $this->belongsTo(User::class, 'last_editor_id');
+    }
 
 }

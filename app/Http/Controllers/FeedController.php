@@ -22,7 +22,7 @@ class FeedController extends Controller
 
     public function getFeedsDatatable(Request $request)
     {
-        $feed = Feed::all();
+        $feed = Feed::with('lastEditor')->get();
         $dataTable = DataTables::of($feed);
         $dataTable->editColumn('body', function ($feed) {
             $max = 50;
@@ -33,6 +33,13 @@ class FeedController extends Controller
         $dataTable->editColumn('created_at', function ($feed) {
             if($feed->created_at){
                 return $feed->created_at->format('d-m-Y H:m:s');
+            }
+            return '';
+        });
+
+        $dataTable->editColumn('last_editor_id', function ($feed) {
+            if($feed->last_editor_id){
+                return $feed->lastEditor->name;
             }
             return '';
         });
@@ -84,6 +91,7 @@ class FeedController extends Controller
         $feed->body = $request->body;
         $feed->source = $request->source;
         $feed->publisher = ucfirst($request->publisher);
+        $feed->last_editor_id = \Auth::id();
         $feed->save();
 
         if (isset($request->imagen)) {
@@ -167,6 +175,7 @@ class FeedController extends Controller
         $feed->body = $request->body;
         $feed->source = $request->source;
         $feed->publisher = ucfirst($request->publisher);
+        $feed->last_editor_id = \Auth::id();
         $feed->save();
         
         if (isset($request->imagen)) {

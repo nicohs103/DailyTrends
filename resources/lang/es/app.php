@@ -32,6 +32,6 @@ return [
     'edit_user' => 'Editar usuario',
     'users' => 'usuarios',
 
-
+    'last_editor' => 'último editor',
 
 ];
