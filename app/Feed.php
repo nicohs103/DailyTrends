@@ -10,21 +10,18 @@ use App\User;
 class Feed extends Model implements HasMedia
 {
     use HasMediaTrait;
-   
-    
+
+
 
     protected static function boot()
     {
         parent::boot();
 
-        static::creating(function ($model) {
-        });
+        static::creating(function ($model) { });
 
-        static::updating(function ($model) {
-        });
+        static::updating(function ($model) { });
 
-        static::saving(function ($model) {
-        });
+        static::saving(function ($model) { });
     }
 
     public $fillable = [
@@ -43,8 +40,8 @@ class Feed extends Model implements HasMedia
         'last_editor_id' => 'integer',
     ];
 
-    public function lastEditor(){
+    public function lastEditor()
+    {
         return $this->belongsTo(User::class, 'last_editor_id');
     }
-
 }
